@@ -68,12 +68,37 @@ class Raffle {
     addPaired(name){
         counter++;
         let {ta} = _.find(this.students, {name})
-        if(counter == 24 && this.jose.student==6){
-            var tas = this.jose;
-            tas.student++
+
+        if(this.jose.student == 7){
+            if(this.alba.student < 6){
+                var tas = this.alba;
+                tas.student++;
+            }else if (this.esther.student < 6) {
+                var tas = this.esther;
+                tas.student++;
+            }
+        }else if (this.alba.student == 6){
+            if(this.jose.student == 6){
+                if(this.esther.student < 6){
+                    var tas = this.esther;
+                    tas.student++;
+                }else {
+                    var tas = this.luis;
+                    tas.student++;
+                }
+            }else{
+                var tas = this.jose;
+                tas.student++;
+            }
+        }else if (this.luis.student == 6 && this.esther.student == 6){
+            var tas = this.alba;
+            tas.student;
         }else{
             var tas = _.minBy(ta, (o) =>  o.student);
             tas.student++;
+        }
+        if(counter == 25 ) {
+            console.log(this.alba,this.jose,this.luis,this.esther)
         }
         this.finalPairs.push(name);
         this.finalPairs.push(tas.name);
